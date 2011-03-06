@@ -5,9 +5,13 @@ Simple wrapper around the unix method `getrusage` for reporting CPU Time and oth
 
 ## Installation
 
-    `npm install getrusage`
+    npm install getrusage
 
-    `make`
+Or: 
+    
+    git clone git://github.com/davglass/node-getrusage.git
+    cd node-getrusage
+    make
 
 ## Usage
 
