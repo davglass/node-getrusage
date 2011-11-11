@@ -7,8 +7,8 @@ Simple wrapper around the unix method `getrusage` for reporting CPU Time and oth
 
     npm install getrusage
 
-Or: 
-    
+Or:
+
     git clone git://github.com/davglass/node-getrusage.git
     cd node-getrusage
     make
@@ -16,6 +16,6 @@ Or:
 ## Usage
 
     var proc = require('getrusage');
-    console.log(proc.usage());
-    console.log(proc.getcputime());
-    console.log(proc.getusertime());
+    console.log(proc.usage());          # Run "man getrusage" for fields.
+    console.log(proc.getcputime());     # User time + system time.
+    console.log(proc.getsystemtime());  # System time.
