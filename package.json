@@ -23,7 +23,7 @@
       "url": "git://github.com/davglass/node-getrusage.git"
     }
   ],
-  "main": "./getrusage",
+  "main": "./build/default/getrusage",
   "scripts": {
     "build": "node-waf configure build",
     "test": "node-waf test",
