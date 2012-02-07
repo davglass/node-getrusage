@@ -23,7 +23,10 @@
       "url": "git://github.com/davglass/node-getrusage.git"
     }
   ],
-  "main": "./build/default/getrusage",
+  "main": "./index.js",
+  "dependencies": {
+    "bindings": "*"
+  },
   "scripts": {
     "build": "node-waf configure build",
     "test": "node-waf test",

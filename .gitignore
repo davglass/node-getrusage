@@ -1,2 +1,8 @@
 build/
 .lock-wscript
+*.gyp
+*.Makefile
+*.target.gyp.mk
+out
+node_modules
+gyp-mac-tool
