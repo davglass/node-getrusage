@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <ev.h>
 #include <sys/time.h>
 #include <sys/resource.h>
 #include <node.h>
