@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-var proc = require('../build/default/getrusage');
+var proc = require('getrusage');
 var fs = require('fs');
-var app = require('express').createServer();
-
 var count = 0;
 
 var timer = setInterval(function() {
@@ -17,8 +15,6 @@ var timer = setInterval(function() {
         clearInterval(timer);
     }
 }, 3000);
-
-app.listen();
 
 setInterval(function() {
     console.log(proc.usage());

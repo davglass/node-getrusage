@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var proc = require('../build/default/getrusage');
+var proc = require('getrusage');
 var util = require('util');
 
 
@@ -13,5 +13,5 @@ process.on('exit', function() {
     console.log('');
     console.log(proc.usage());
     console.log('CPU Time: ', proc.getcputime());
-    console.log('User Time: ', proc.getusertime());
+    console.log('User Time: ', proc.getsystemtime());
 });
