@@ -2,7 +2,7 @@
   "name": "getrusage",
   "description": "C++ Port of Unix getrusage for getting cputime, usertime and other process information",
   "homepage": "https://github.com/davglass/node-getrusage",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "maintainers": [
     {
       "name": "Dav Glass",
@@ -28,10 +28,7 @@
     "bindings": "*"
   },
   "scripts": {
-    "build": "node-waf configure build",
-    "test": "node-waf test",
-    "doc": "node-waf doc",
-    "preinstall": "node-waf configure build install"
+    "install": "make build"
   },
   "engines": {
     "node": ">=0.6.0"
