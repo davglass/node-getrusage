@@ -1,7 +1,17 @@
-all:
-	node-waf configure build
+TESTS = test/*.js
+
+all: build test
+
+build: clean configure compile
+
+configure:
+	node-gyp configure
+
+compile: configure
+	node-gyp build
 
 clean:
-	rm -r ./build
-	rm -r .lock-wscript
+	node-gyp clean
 
+
+.PHONY: clean test build

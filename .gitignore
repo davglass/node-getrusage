@@ -1,6 +1,5 @@
 build/
 .lock-wscript
-*.gyp
 *.Makefile
 *.target.gyp.mk
 out
