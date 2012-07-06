@@ -19,3 +19,7 @@ Or:
     console.log(proc.usage());          # Run "man getrusage" for fields.
     console.log(proc.getcputime());     # User time + system time.
     console.log(proc.getsystemtime());  # System time.
+
+## Build Status
+
+[![Build Status](https://secure.travis-ci.org/davglass/node-getrusage.png?branch=master)](http://travis-ci.org/davglass/node-getrusage)
