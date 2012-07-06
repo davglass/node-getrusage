@@ -11,7 +11,7 @@ Or:
 
     git clone git://github.com/davglass/node-getrusage.git
     cd node-getrusage
-    make
+    npm install
 
 ## Usage
 
@@ -19,6 +19,11 @@ Or:
     console.log(proc.usage());          # Run "man getrusage" for fields.
     console.log(proc.getcputime());     # User time + system time.
     console.log(proc.getsystemtime());  # System time.
+
+## Tests
+
+    npm install && npm test
+
 
 ## Build Status
 
