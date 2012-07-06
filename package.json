@@ -9,6 +9,12 @@
       "email": "davglass@gmail.com"
     }
   ],
+  "contributors": [
+    { "name": "Jeff Haynie", "email": "jhaynie@gmail.com" },
+    { "name": "Nathan Rajlich", "email": "nathan@tootallnate.net" },
+    { "name": "Florian Traverse", "email": "florian.traverse@gmail.com" },
+    { "name": "Seth LaForge", "email": "seth@ridemission.com" }
+  ],
   "bugs": {
     "url": "https://github.com/davglass/node-getrusage/issues"
   },
