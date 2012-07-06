@@ -1,6 +1,11 @@
 var vows = require('vows'),
     assert = require('assert'),
-    proc = require('getrusage');
+    proc = require('../'),
+    waste = function() {
+        for (var i =0; i < 900000; i++) {
+            //Nothing here
+        }
+    };
 
 vows.describe('Test Loading and Bindings').addBatch({
     'Should be loaded': {
@@ -19,11 +24,13 @@ vows.describe('Test Loading and Bindings').addBatch({
             assert.deepEqual(Object.keys(usage), keys);
         },
         'proc.getcputime() should return a number': function(topic) {
+            waste();
             var time = topic.getcputime();
             assert.isNumber(time);
             assert.isTrue((time > 0));
         },
         'proc.getsystemtime() should return a number': function(topic) {
+            waste();
             var time = topic.getsystemtime();
             assert.isNumber(time);
             assert.isTrue((time > 0));
