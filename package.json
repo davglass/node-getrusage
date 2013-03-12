@@ -2,7 +2,7 @@
   "name": "getrusage",
   "description": "C++ Port of Unix getrusage for getting cputime, usertime and other process information",
   "homepage": "https://github.com/davglass/node-getrusage",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "maintainers": [
     {
       "name": "Dav Glass",
