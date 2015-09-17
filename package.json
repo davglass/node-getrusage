@@ -51,7 +51,7 @@
   },
   "scripts": {
     "install": "make build",
-    "test": "./node_modules/.bin/vows ./tests/*.js"
+    "test": "./node_modules/.bin/vows --spec ./tests/*.js"
   },
   "engines": {
     "node": ">=0.6.0"
