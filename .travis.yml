@@ -1,12 +1,22 @@
+os:
+  - linux
+sudo: false
 before_install:
   npm install -g npm@'>=1.4.3'
-
 language: node_js
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
 node_js:
-  - "0.6"
   - "0.8"
-  - "0.9"
   - "0.10"
   - "0.12"
   - "iojs"
   - "4.0"
+install:
+  - export CXX=g++-4.8
+  - $CXX --version
+  - npm i
