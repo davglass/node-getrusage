@@ -1,59 +1,59 @@
 {
-  "name": "getrusage",
-  "description": "C++ Port of Unix getrusage for getting cputime, usertime and other process information",
-  "homepage": "https://github.com/davglass/node-getrusage",
-  "version": "0.3.3",
-  "maintainers": [
-    {
-      "name": "Dav Glass",
-      "email": "davglass@gmail.com"
-    }
-  ],
-  "contributors": [
-    {
-      "name": "Jeff Haynie",
-      "email": "jhaynie@gmail.com"
+    "name": "getrusage",
+    "description": "C++ Port of Unix getrusage for getting cputime, usertime and other process information",
+    "homepage": "https://github.com/davglass/node-getrusage",
+    "version": "0.3.3",
+    "maintainers": [
+        {
+            "name": "Dav Glass",
+            "email": "davglass@gmail.com"
+        }
+    ],
+    "contributors": [
+        {
+            "name": "Jeff Haynie",
+            "email": "jhaynie@gmail.com"
+        },
+        {
+            "name": "Nathan Rajlich",
+            "email": "nathan@tootallnate.net"
+        },
+        {
+            "name": "Florian Traverse",
+            "email": "florian.traverse@gmail.com"
+        },
+        {
+            "name": "Seth LaForge",
+            "email": "seth@ridemission.com"
+        },
+        {
+            "name": "Damien Arrachequesne",
+            "email": "<damien.arrachequesne@gmail.com>"
+        }
+    ],
+    "bugs": {
+        "url": "https://github.com/davglass/node-getrusage/issues"
     },
-    {
-      "name": "Nathan Rajlich",
-      "email": "nathan@tootallnate.net"
+    "license": "BSD",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git://github.com/davglass/node-getrusage.git"
+        }
+    ],
+    "main": "./index.js",
+    "dependencies": {
+        "bindings": "*",
+        "nan": "^2.0.9"
     },
-    {
-      "name": "Florian Traverse",
-      "email": "florian.traverse@gmail.com"
+    "devDependencies": {
+        "vows": "*"
     },
-    {
-      "name": "Seth LaForge",
-      "email": "seth@ridemission.com"
+    "scripts": {
+        "install": "make build",
+        "test": "./node_modules/.bin/vows --spec ./tests/*.js"
+    },
+    "engines": {
+        "node": ">=0.6.0"
     }
-  ],
-  "bugs": {
-    "url": "https://github.com/davglass/node-getrusage/issues"
-  },
-  "licenses": [
-    {
-      "type": "BSD"
-    }
-  ],
-  "repositories": [
-    {
-      "type": "git",
-      "url": "git://github.com/davglass/node-getrusage.git"
-    }
-  ],
-  "main": "./index.js",
-  "dependencies": {
-    "bindings": "*",
-    "nan": "^2.0.9"
-  },
-  "devDependencies": {
-    "vows": "*"
-  },
-  "scripts": {
-    "install": "make build",
-    "test": "./node_modules/.bin/vows --spec ./tests/*.js"
-  },
-  "engines": {
-    "node": ">=0.6.0"
-  }
 }
