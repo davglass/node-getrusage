@@ -1,4 +1,23 @@
+os:
+  - linux
+sudo: false
+before_install:
+  # npm shipped with Node.js 0.8 doesn't support carret so let's update it
+  - if [ "$TRAVIS_NODE_VERSION" == "0.8" ]; then npm install -g npm; fi
 language: node_js
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
 node_js:
-    - 0.8
-    - 0.9
+  - "0.8"
+  - "0.10"
+  - "0.12"
+  - "iojs"
+  - "4.0"
+install:
+  - export CXX=g++-4.8
+  - $CXX --version
+  - npm i

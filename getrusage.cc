@@ -9,70 +9,69 @@
 #include <sys/time.h>
 #include <sys/resource.h>
 #include <node.h>
+#include <nan.h>
 
-using namespace v8;
+using namespace Nan;
 
 
-Handle<Value> GetCPUTime(const Arguments& args) {
+NAN_METHOD(GetCPUTime) {
     struct rusage ru;
     getrusage(RUSAGE_SELF, &ru);
 
-    return Number::New(
+    info.GetReturnValue().Set(New<v8::Number>(
         (double)ru.ru_utime.tv_sec + (double)ru.ru_utime.tv_usec * 1e-6 +
-        (double)ru.ru_stime.tv_sec + (double)ru.ru_stime.tv_usec * 1e-6);
+        (double)ru.ru_stime.tv_sec + (double)ru.ru_stime.tv_usec * 1e-6));
 }
 
-Handle<Value> GetSystemTime(const Arguments& args) {
+NAN_METHOD(GetSystemTime) {
     struct rusage ru;
     getrusage(RUSAGE_SELF, &ru);
 
-    return Number::New(
-        (double)ru.ru_stime.tv_sec + (double)ru.ru_stime.tv_usec * 1e-6);
+    info.GetReturnValue().Set(New<v8::Number>(
+        (double)ru.ru_stime.tv_sec + (double)ru.ru_stime.tv_usec * 1e-6));
 }
 
-static Handle<Value> timevalToNumber(struct timeval &tim) {
-  return Number::New((double)tim.tv_sec + (double)tim.tv_usec * 1e-6);
+static v8::Handle<v8::Value> timevalToNumber(struct timeval &tim) {
+    return New<v8::Number>((double)tim.tv_sec + (double)tim.tv_usec * 1e-6);
 }
 
-Handle<Value> GetUsage(const Arguments& args) {
-    HandleScope scope;
+NAN_METHOD(GetUsage) {
+    EscapableHandleScope scope;
 
     struct rusage ru;
     getrusage(RUSAGE_SELF, &ru);
 
-    Local<Object> info = Object::New();
+    v8::Local<v8::Object> output = New<v8::Object>();
 
     #define FIELD(name, conv) \
-        info->Set(String::NewSymbol(#name), conv(ru.ru_##name))
+        Set(output, New<v8::String>(#name).ToLocalChecked(), conv(ru.ru_##name))
 
-    FIELD(utime, timevalToNumber);     /* user time used */
-    FIELD(stime, timevalToNumber);     /* system time used */
-    FIELD(maxrss, Number::New);        /* maximum resident set size */
-    FIELD(ixrss, Number::New);         /* integral shared memory size */
-    FIELD(idrss, Number::New);         /* integral unshared data size */
-    FIELD(isrss, Number::New);         /* integral unshared stack size */
-    FIELD(minflt, Number::New);        /* page reclaims */
-    FIELD(majflt, Number::New);        /* page faults */
-    FIELD(nswap, Number::New);         /* swaps */
-    FIELD(inblock, Number::New);       /* block input operations */
-    FIELD(oublock, Number::New);       /* block output operations */
-    FIELD(msgsnd, Number::New);        /* messages sent */
-    FIELD(msgrcv, Number::New);        /* messages received */
-    FIELD(nsignals, Number::New);      /* signals received */
-    FIELD(nvcsw, Number::New);         /* voluntary context switches */
-    FIELD(nivcsw, Number::New);        /* involuntary context switches */
+    FIELD(utime, timevalToNumber);         /* user time used */
+    FIELD(stime, timevalToNumber);         /* system time used */
+    FIELD(maxrss, New<v8::Number>);        /* maximum resident set size */
+    FIELD(ixrss, New<v8::Number>);         /* integral shared memory size */
+    FIELD(idrss, New<v8::Number>);         /* integral unshared data size */
+    FIELD(isrss, New<v8::Number>);         /* integral unshared stack size */
+    FIELD(minflt, New<v8::Number>);        /* page reclaims */
+    FIELD(majflt, New<v8::Number>);        /* page faults */
+    FIELD(nswap, New<v8::Number>);         /* swaps */
+    FIELD(inblock, New<v8::Number>);       /* block input operations */
+    FIELD(oublock, New<v8::Number>);       /* block output operations */
+    FIELD(msgsnd, New<v8::Number>);        /* messages sent */
+    FIELD(msgrcv, New<v8::Number>);        /* messages received */
+    FIELD(nsignals, New<v8::Number>);      /* signals received */
+    FIELD(nvcsw, New<v8::Number>);         /* voluntary context switches */
+    FIELD(nivcsw, New<v8::Number>);        /* involuntary context switches */
 
     #undef FIELD
 
-    return scope.Close(info);
+    info.GetReturnValue().Set(scope.Escape(output));
 }
 
-extern "C" void init(Handle<Object> target) {
-    HandleScope scope;
-
-    target->Set(String::New("usage"), FunctionTemplate::New(GetUsage)->GetFunction());
-    target->Set(String::New("getcputime"), FunctionTemplate::New(GetCPUTime)->GetFunction());
-    target->Set(String::New("getsystemtime"), FunctionTemplate::New(GetSystemTime)->GetFunction());
+NAN_MODULE_INIT(Init) {
+    SetMethod(target, "usage", GetUsage);
+    SetMethod(target, "getcputime", GetCPUTime);
+    SetMethod(target, "getsystemtime", GetSystemTime);
 }
 
-NODE_MODULE(getrusage, init)
+NODE_MODULE(getrusage, Init)
